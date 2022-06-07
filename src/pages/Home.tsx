@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import { useLazyLoadQuery } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import { useLazyLoadQuery, graphql } from 'react-relay';
+// import graphql from 'babel-plugin-relay/macro';
 
 import PosterList from '../components/PosterList';
 import { Profile } from '../components/Profile';
@@ -8,14 +8,14 @@ import { Profile } from '../components/Profile';
 import { ErrorBoundary } from 'react-error-boundary';
 
 const Home: React.FC = () => {
-  const ref = useLazyLoadQuery(
-    graphql`
-      query HomeQuery {
-        ...PosterList_query
-      }
-    `,
-    {}
-  );
+  // const ref = useLazyLoadQuery(
+  //   graphql`
+  //     query HomeQuery {
+  //       ...PosterListQuery
+  //     }
+  //   `,
+  //   {}
+  // );
 
   return (
     <ErrorBoundary fallbackRender={({ error }) => <h1>{error.message}</h1>}>
@@ -23,7 +23,9 @@ const Home: React.FC = () => {
         <div className="flex flex-col gap-14">
           <Profile />
 
-          <PosterList queryRef={ref} />
+          <PosterList
+          // queryRef={ref}
+          />
         </div>
       </Suspense>
     </ErrorBoundary>

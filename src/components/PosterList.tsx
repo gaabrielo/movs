@@ -1,7 +1,12 @@
 import React from 'react';
 // import type {HomeTabQuery} from 'HomeTabQuery.graphql';
-import { PreloadedQuery, usePreloadedQuery, QueryRenderer } from 'react-relay';
-import graphql from 'babel-plugin-relay/macro';
+import {
+  PreloadedQuery,
+  usePreloadedQuery,
+  QueryRenderer,
+  graphql,
+} from 'react-relay';
+// import graphql from 'babel-plugin-relay/macro';
 
 import { AddMovieCard } from 'components/AddMovieCard';
 import { Poster } from './Poster';
@@ -24,23 +29,24 @@ export const movies = [
 ];
 
 type PosterListProps = {
-  queryRef: any;
+  queryRef?: any;
   // query?: any;
 };
 
 const PosterList: React.FC<PosterListProps> = ({ queryRef }) => {
-  const data = usePreloadedQuery(
-    graphql`
-      query PosterList_query {
-        movies {
-          name
-        }
-      }
-    `,
-    queryRef
-  );
+  console.log('🚀 ~ file: PosterList.tsx ~ line 37 ~ queryRef', queryRef);
+  // const data = usePreloadedQuery(
+  //   graphql`
+  //     query PosterListQuery {
+  //       movies {
+  //         name
+  //       }
+  //     }
+  //   `,
+  //   queryRef
+  // );
 
-  console.log('🚀 ~ file: PosterList.tsx ~ line 23 ~ data', data);
+  // console.log('🚀 ~ file: PosterList.tsx ~ line 23 ~ data', data);
 
   return (
     <div>
@@ -63,33 +69,33 @@ const PosterList: React.FC<PosterListProps> = ({ queryRef }) => {
   );
 };
 
-// const PosterListQR = () => {
-//   return (
-//     <QueryRenderer
-//       environment={Environment}
-//       query={graphql`
-//         query PosterListQuery {
-//           movies {
-//             _id
-//             name
-//           }
-//         }
-//       `}
-//       variables={{}}
-//       render={({ error, props }) => {
-//         console.log('qr: ', error, props);
-//         if (error) {
-//           return <span>{error.toString()}</span>;
-//         }
+const PosterListQR = () => {
+  return (
+    <QueryRenderer
+      environment={Environment}
+      query={graphql`
+        query PosterListQuery {
+          movies {
+            _id
+            name
+          }
+        }
+      `}
+      variables={{}}
+      render={({ error, props }) => {
+        console.log('qr: ', error, props);
+        if (error) {
+          return <span>{error.toString()}</span>;
+        }
 
-//         if (props) {
-//           return <PosterList query={props} />;
-//         }
+        if (props) {
+          return <PosterList queryRef={props} />;
+        }
 
-//         return <span>loading</span>;
-//       }}
-//     />
-//   );
-// };
+        return <span>loading</span>;
+      }}
+    />
+  );
+};
 
 export default PosterList;
