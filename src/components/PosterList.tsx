@@ -1,30 +1,28 @@
 import React from 'react';
-// import type {HomeTabQuery} from 'HomeTabQuery.graphql';
-import { PreloadedQuery, usePreloadedQuery, QueryRenderer } from 'react-relay';
+import { useFragment } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
 import { AddMovieCard } from 'components/AddMovieCard';
 import { Poster } from './Poster';
 
-import { movies } from '../data/mock';
+import { movies } from '../../data/mock';
 
-import Environment from '../services/Environment';
+import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
 
 type PosterListProps = {
-  queryRef: any;
-  // query?: any;
+  query: PosterList_query$key;
 };
 
-const PosterList: React.FC<PosterListProps> = ({ queryRef }) => {
-  const data = usePreloadedQuery(
+const PosterList: React.FC<PosterListProps> = ({ query }) => {
+  const data = useFragment(
     graphql`
-      query PosterList_query {
+      fragment PosterList_query on Query {
         movies {
           name
         }
       }
     `,
-    queryRef
+    query
   );
 
   console.log('🚀 ~ file: PosterList.tsx ~ line 23 ~ data', data);
@@ -49,34 +47,5 @@ const PosterList: React.FC<PosterListProps> = ({ queryRef }) => {
     </div>
   );
 };
-
-// const PosterListQR = () => {
-//   return (
-//     <QueryRenderer
-//       environment={Environment}
-//       query={graphql`
-//         query PosterListQuery {
-//           movies {
-//             _id
-//             name
-//           }
-//         }
-//       `}
-//       variables={{}}
-//       render={({ error, props }) => {
-//         console.log('qr: ', error, props);
-//         if (error) {
-//           return <span>{error.toString()}</span>;
-//         }
-
-//         if (props) {
-//           return <PosterList query={props} />;
-//         }
-
-//         return <span>loading</span>;
-//       }}
-//     />
-//   );
-// };
 
 export default PosterList;

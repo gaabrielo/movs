@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { GoBackHeader } from 'components/GoBackHeader';
 import { EditMovieForm } from 'components/EditMovieForm';
 
-import { movies } from '../data/mock';
-import { MovieProps } from 'data/types';
+import { movies } from '../../data/mock';
+import { MovieProps } from '../../data/types';
 
 const EditMovie: React.FC = () => {
   let { id } = useParams();
