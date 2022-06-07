@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MovieProps } from 'data/types';
+import { MovieProps } from '../../data/types';
 import { format } from 'date-fns';
 import InputMask from 'react-input-mask';
 import { Poster } from 'components/Poster';

@@ -56,7 +56,6 @@
     "react-relay": "^13.2.0",
     "react-router-dom": "^6.3.0",
     "react-svg": "^15.0.2",
-    "relay": "^0.8.0-1",
     "relay-runtime": "^13.2.0",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
@@ -77,7 +76,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "relay": "relay-compiler --src ./src --schema ./src/data/schema.graphql"
+    "relay": "relay-compiler"
   },
   "eslintConfig": {
     "extends": [

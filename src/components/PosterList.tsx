@@ -1,24 +1,22 @@
 import React from 'react';
 // import type {HomeTabQuery} from 'HomeTabQuery.graphql';
-import { PreloadedQuery, usePreloadedQuery, QueryRenderer } from 'react-relay';
+import { PreloadedQuery, usePreloadedQuery, QueryRenderer, useFragment } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
 import { AddMovieCard } from 'components/AddMovieCard';
 import { Poster } from './Poster';
 
-import { movies } from '../data/mock';
-
-import Environment from '../services/Environment';
+import { movies } from '../../data/mock';
 
 type PosterListProps = {
-  queryRef: any;
+  // queryRef: any;
   // query?: any;
 };
 
 const PosterList: React.FC<PosterListProps> = ({ queryRef }) => {
-  const data = usePreloadedQuery(
+  const data = useFragment(
     graphql`
-      query PosterList_query {
+      fragment PosterList_query on Query {
         movies {
           name
         }

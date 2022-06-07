@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { useLazyLoadQuery } from 'react-relay';
+import { usePreloadedQuery } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
 import PosterList from '../components/PosterList';
@@ -7,14 +7,14 @@ import { Profile } from '../components/Profile';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
-const Home: React.FC = () => {
-  const ref = useLazyLoadQuery(
+const Home: React.FC = ({ homeQuery }) => {
+  const queryRef = usePreloadedQuery(
     graphql`
       query HomeQuery {
         ...PosterList_query
       }
     `,
-    {}
+    homeQuery
   );
 
   return (
@@ -23,11 +23,11 @@ const Home: React.FC = () => {
         <div className="flex flex-col gap-14">
           <Profile />
 
-          <PosterList queryRef={ref} />
+          <PosterList queryRef={queryRef} />
         </div>
       </Suspense>
     </ErrorBoundary>
   );
 };
 
-export { Home };
+export default Home;
