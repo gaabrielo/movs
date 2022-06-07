@@ -16,6 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "src"
+    // "baseUrl": "types",
+    // "typeRoots": ["types"]
   },
   "include": ["src", "src/**/*.ts"],
   "exclude": ["node_modules"]
