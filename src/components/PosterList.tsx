@@ -11,24 +11,23 @@ import { movies } from '../data/mock';
 import Environment from '../services/Environment';
 
 type PosterListProps = {
-  queryRef?: any;
-  query?: any;
+  queryRef: any;
+  // query?: any;
 };
 
-const PosterList: React.FC<PosterListProps> = ({ queryRef, query }) => {
-  console.log('🚀 ~ file: PosterList.tsx ~ line 19 ~ query', query);
-  // const data = usePreloadedQuery(
-  //   graphql`
-  //     query PosterList_query {
-  //       movies {
-  //         name
-  //       }
-  //     }
-  //   `,
-  //   queryRef
-  // );
+const PosterList: React.FC<PosterListProps> = ({ queryRef }) => {
+  const data = usePreloadedQuery(
+    graphql`
+      query PosterList_query {
+        movies {
+          name
+        }
+      }
+    `,
+    queryRef
+  );
 
-  // console.log('🚀 ~ file: PosterList.tsx ~ line 23 ~ data', data);
+  console.log('🚀 ~ file: PosterList.tsx ~ line 23 ~ data', data);
 
   return (
     <div>
@@ -51,33 +50,33 @@ const PosterList: React.FC<PosterListProps> = ({ queryRef, query }) => {
   );
 };
 
-const PosterListQR = () => {
-  return (
-    <QueryRenderer
-      environment={Environment}
-      query={graphql`
-        query PosterListQuery {
-          movies {
-            _id
-            name
-          }
-        }
-      `}
-      variables={{}}
-      render={({ error, props }) => {
-        console.log('qr: ', error, props);
-        if (error) {
-          return <span>{error.toString()}</span>;
-        }
+// const PosterListQR = () => {
+//   return (
+//     <QueryRenderer
+//       environment={Environment}
+//       query={graphql`
+//         query PosterListQuery {
+//           movies {
+//             _id
+//             name
+//           }
+//         }
+//       `}
+//       variables={{}}
+//       render={({ error, props }) => {
+//         console.log('qr: ', error, props);
+//         if (error) {
+//           return <span>{error.toString()}</span>;
+//         }
 
-        if (props) {
-          return <PosterList query={props} />;
-        }
+//         if (props) {
+//           return <PosterList query={props} />;
+//         }
 
-        return <span>loading</span>;
-      }}
-    />
-  );
-};
+//         return <span>loading</span>;
+//       }}
+//     />
+//   );
+// };
 
-export default PosterListQR;
+export default PosterList;
