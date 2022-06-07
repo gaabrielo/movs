@@ -7,8 +7,14 @@ import { Profile } from '../components/Profile';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
-const Home: React.FC = ({ homeQuery }) => {
-  const queryRef = usePreloadedQuery(
+import { HomeQuery } from './__generated__/HomeQuery.graphql';
+
+type Props = {
+  homeQuery: unknown;
+}
+
+const Home: React.FC<Props> = ({ homeQuery }) => {
+  const query = usePreloadedQuery<HomeQuery>(
     graphql`
       query HomeQuery {
         ...PosterList_query
@@ -23,7 +29,7 @@ const Home: React.FC = ({ homeQuery }) => {
         <div className="flex flex-col gap-14">
           <Profile />
 
-          <PosterList queryRef={queryRef} />
+          <PosterList query={query} />
         </div>
       </Suspense>
     </ErrorBoundary>
