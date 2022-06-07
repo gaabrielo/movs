@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { MovieProps } from 'data/types';
 import { format } from 'date-fns';
 import InputMask from 'react-input-mask';
 import { Poster } from 'components/Poster';
 import { ImageSubmitControl } from 'components/ImageSubmitControl';
 import { ImageSubmitContainer } from 'components/ImageSubmitContainer';
+
+type MovieProps = {
+  id: string;
+  title: string;
+  cover: string;
+};
 
 interface EditMovieFormProps {
   preloadedData: MovieProps;
