@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#09090A] text-zinc-100;
+  @apply bg-background-dark text-title;
+}
+
+input {
+  @apply text-subtitle;
 }
