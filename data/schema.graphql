@@ -13,6 +13,7 @@ type Category {
 type Movie {
   name: String!
   description: String!
+  category: Category!
   cover: String!
   _id: String!
 }
@@ -44,10 +45,12 @@ input MovieInput {
   description: String!
   name: String!
   cover: String!
+  category: String
 }
 
 input UpdateMovieProps {
   description: String
   name: String
   cover: String
+  category: String
 }

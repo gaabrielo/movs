@@ -101,7 +101,7 @@ const EditMovieForm: React.FC<EditMovieFormProps> = ({ preloaded }) => {
           <div className="block">
             <Poster
               imageSrc={formData.imageUrl}
-              title="Jaws"
+              title={formData.imageUrl}
               id="key"
               hasActions={false}
             />
@@ -121,7 +121,8 @@ const EditMovieForm: React.FC<EditMovieFormProps> = ({ preloaded }) => {
                 })
               }
               handleChangeClick={() => {
-                handleChange('watchedDate', null);
+                handleChange('imageUrl', '');
+                setIsPreview(false);
               }}
               isDisabled={
                 !formData.watchedDate ||

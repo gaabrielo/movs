@@ -98,7 +98,7 @@ const AddMovieForm: React.FC = () => {
             <Poster
               // imageSrc={getFileSrc(posterImage[0])}
               imageSrc={formData.imageUrl}
-              title="Jaws"
+              title={formData.imageUrl}
               id="key"
               hasActions={false}
             />
