@@ -6,7 +6,7 @@ const Profile: React.FC = () => {
   return (
     <div className="flex gap-6 items-center">
       <img
-        src={require('../assets/Akira.png')}
+        src={require('../assets/akira.png')}
         alt="Profile"
         className="rounded-full w-24 h-24"
       />

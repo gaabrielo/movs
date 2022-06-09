@@ -47,6 +47,7 @@
     "prompts": "^2.4.2",
     "react": "^18.1.0",
     "react-app-polyfill": "^3.0.0",
+    "react-autocomplete": "^1.8.1",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.1.0",
     "react-dropzone": "^14.2.1",
@@ -98,6 +99,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-autocomplete": "^1.8.6",
     "@types/react-relay": "^13.0.2",
     "@types/relay-runtime": "^13.0.3",
     "autoprefixer": "^10.4.7",

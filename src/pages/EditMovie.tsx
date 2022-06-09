@@ -1,46 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { GoBackHeader } from 'components/GoBackHeader';
 import { EditMovieForm } from 'components/EditMovieForm';
 
-export const movies = [
-  {
-    id: '1',
-    title: "Harry Potter and the Philosopher's Stone",
-    cover:
-      'https://m.media-amazon.com/images/M/MV5BMzkyZGFlOWQtZjFlMi00N2YwLWE2OWQtYTgxY2NkNmM1NjMwXkEyXkFqcGdeQXVyNjY1NTM1MzA@._V1_.jpg',
-  },
-  {
-    id: '2',
-    title: 'Jaws',
-    cover:
-      'https://uauposters.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/5/1/513820201013-uau-posters-classico-retro-jaws-turbarao-4.jpg',
-  },
-];
+import { useLazyLoadQuery } from 'react-relay';
+import { EditMovieQuery } from './__generated__/EditMovieQuery.graphql';
+import graphql from 'babel-plugin-relay/macro';
 
-type MovieProps = {
-  id: string;
-  title: string;
-  cover: string;
-};
+interface EditMovieProps {
+  movieId: string;
+}
 
-const EditMovie: React.FC = () => {
-  let { id } = useParams();
+const EditMovie: React.FC<EditMovieProps> = ({ movieId }) => {
+  const data = useLazyLoadQuery<EditMovieQuery>(
+    graphql`
+      query EditMovieQuery($input: MovieId!) {
+        getMovieById(movieId: $input) {
+          _id
+          name
+          description
+          cover
+        }
+      }
+    `,
+    { input: { _id: movieId } }
+  );
 
-  const [currentMovie, setCurrentMovie] = useState<MovieProps>();
-
-  useEffect(() => {
-    setCurrentMovie(movies.find((movie) => movie.id === id));
-  }, [id]);
-
+  if (!data) return <h1>Loading...</h1>;
   return (
     <div className="flex flex-col gap-14">
       <GoBackHeader>Edit favorite</GoBackHeader>
 
-      {currentMovie && <EditMovieForm preloadedData={currentMovie} />}
+      {data?.getMovieById && <EditMovieForm preloaded={data.getMovieById} />}
     </div>
   );
 };
 
-export { EditMovie };
+export default function EditMovieWrapper() {
+  let { id } = useParams();
+
+  if (!id) return <h1>Loading...</h1>;
+  return (
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <EditMovie movieId={id} />
+    </Suspense>
+  );
+}
