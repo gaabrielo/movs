@@ -1,6 +1,7 @@
 type Query {
   categories: [Category!]!
   movies: [Movie!]!
+  getMovieById(movieId: MovieId!): Movie!
 }
 
 type Category {
@@ -16,9 +17,16 @@ type Movie {
   _id: String!
 }
 
+input MovieId {
+  _id: String!
+}
+
 type Mutation {
   createCategory(categoryInput: CategoryInput!): Category!
+  updateCategory(categoryInput: CategoryUpdateInput!): Category!
   createMovie(movieInput: MovieInput!): Movie!
+  deleteMovie(movieId: MovieId!): Boolean!
+  updateMovie(movieInput: UpdateMovieProps!, movieId: MovieId!): Movie!
 }
 
 input CategoryInput {
@@ -26,8 +34,20 @@ input CategoryInput {
   name: String!
 }
 
+input CategoryUpdateInput {
+  description: String
+  name: String
+  _id: String!
+}
+
 input MovieInput {
   description: String!
   name: String!
   cover: String!
+}
+
+input UpdateMovieProps {
+  description: String
+  name: String
+  cover: String
 }
