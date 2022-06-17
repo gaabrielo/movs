@@ -8,6 +8,7 @@ import { Menu } from 'components/Menu';
 import { Container } from 'components/Container';
 import Home from './pages/Home';
 import { NewMovie } from 'pages/NewMovie';
+import { Watchlist } from 'pages/Watchlist';
 import EditMovie from 'pages/EditMovie';
 
 import Environment from './services/Environment';
@@ -33,6 +34,7 @@ function App() {
           <Routes>
             <Route path="/edit/:id" element={<EditMovie />} />
             <Route path="/add" element={<NewMovie />} />
+            <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </Container>
