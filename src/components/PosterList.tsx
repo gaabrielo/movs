@@ -1,9 +1,13 @@
 import React from 'react';
+
 import { useFragment } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
 import { AddMovieCard } from 'components/AddMovieCard';
 import { Poster } from './Poster';
+
+import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
+
 
 import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
 

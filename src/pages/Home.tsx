@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { useLazyLoadQuery } from 'react-relay';
+import { useLazyLoadQuery, usePreloadedQuery } from 'react-relay';
 import graphql from 'babel-plugin-relay/macro';
 
 import PosterList from '../components/PosterList';

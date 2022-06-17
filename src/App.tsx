@@ -8,7 +8,9 @@ import { Menu } from 'components/Menu';
 import { Container } from 'components/Container';
 import Home from './pages/Home';
 import { NewMovie } from 'pages/NewMovie';
+
 import { Watchlist } from 'pages/Watchlist';
+
 import EditMovie from 'pages/EditMovie';
 
 import Environment from './services/Environment';
