@@ -32,4 +32,4 @@ const Home: React.FC = () => {
   );
 };
 
-export { Home };
+export default Home;

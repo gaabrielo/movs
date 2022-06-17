@@ -1,18 +1,13 @@
 import React from 'react';
-// import type {HomeTabQuery} from 'HomeTabQuery.graphql';
-import {
-  PreloadedQuery,
-  usePreloadedQuery,
-  QueryRenderer,
-  graphql,
-  useFragment,
-} from 'react-relay';
-// import graphql from 'babel-plugin-relay/macro';
+
+import { useFragment } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
 
 import { AddMovieCard } from 'components/AddMovieCard';
 import { Poster } from './Poster';
 
-import Environment from '../services/Environment';
+import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
+
 
 import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
 
