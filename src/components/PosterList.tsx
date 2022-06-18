@@ -8,9 +8,6 @@ import { Poster } from './Poster';
 
 import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
 
-
-import { PosterList_query$key } from './__generated__/PosterList_query.graphql';
-
 type PosterListProps = {
   query: PosterList_query$key;
 };
